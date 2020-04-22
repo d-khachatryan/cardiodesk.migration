@@ -1,0 +1,3505 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/25/2016 12:11:54 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-52UEVDL"
+  DTS:CreatorName="DESKTOP-52UEVDL\davit"
+  DTS:DTSID="{5412D0D1-238E-4041-B693-862275D71BF5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package9"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{DA5DC22F-4FE5-47DC-8F04-BFF0A23A1AC8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F4E279F4-3A22-4185-8391-194D412D5EDE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.TroponinStatus&#xA;DELETE FROM dbo.UrineCylinderStatus&#xA;DELETE FROM dbo.UrineMicroorganismStatus&#xA;DELETE FROM dbo.UrogenitalicDisease&#xA;DELETE FROM dbo.Valve&#xA;DELETE FROM dbo.ValveSurgeryType&#xA;DELETE FROM dbo.ValveType&#xA;DELETE FROM dbo.VH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TroponinStatus"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{156D3BCA-83E1-4029-B482-E654E811B03A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TroponinStatus"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\TroponinStatus\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TroponinStatus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TroponinStatus\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Troponin_ID]"
+                      cachedDataType="i4"
+                      cachedName="Troponin_ID"
+                      externalMetadataColumnId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TroponinStatusId]"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Troponin_ID]" />
+                    <inputColumn
+                      refId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Troponin_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="Troponin_Name"
+                      externalMetadataColumnId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TroponinStatusName]"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Troponin_Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TroponinStatusId]"
+                      dataType="i4"
+                      name="TroponinStatusId" />
+                    <externalMetadataColumn
+                      refId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TroponinStatusName]"
+                      dataType="wstr"
+                      length="50"
+                      name="TroponinStatusName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TroponinStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TroponinStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TroponinStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TroponinStatus\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Troponin]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TroponinStatus\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Troponin_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Troponin_ID]"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Troponin_ID]"
+                      name="Troponin_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Troponin_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Troponin_Name]"
+                      length="1000"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Troponin_Name]"
+                      name="Troponin_Name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Troponin_ID]"
+                      dataType="i4"
+                      name="Troponin_ID" />
+                    <externalMetadataColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Troponin_Name]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Troponin_Name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Troponin_ID]"
+                      dataType="i4"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Troponin_ID]"
+                      name="Troponin_ID" />
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Troponin_Name]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Troponin_Name]"
+                      name="Troponin_Name" />
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\TroponinStatus.Paths[OLE DB Source Output]"
+              endId="Package\TroponinStatus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\TroponinStatus\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UrineCylinderStatus"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6A35CFCD-0570-4CC0-A215-61A36CACBED9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UrineCylinderStatus"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\UrineCylinderStatus\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[UrineCylinderStatus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UrineCylinderStatus\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Urine_Cylinders_ID]"
+                      cachedDataType="i4"
+                      cachedName="Urine_Cylinders_ID"
+                      externalMetadataColumnId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineCylinderStatusId]"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Cylinders_ID]" />
+                    <inputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Urine_Cylinders]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="Urine_Cylinders"
+                      externalMetadataColumnId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineCylinderStatusName]"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Cylinders]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineCylinderStatusId]"
+                      dataType="i4"
+                      name="UrineCylinderStatusId" />
+                    <externalMetadataColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineCylinderStatusName]"
+                      dataType="wstr"
+                      length="50"
+                      name="UrineCylinderStatusName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UrineCylinderStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UrineCylinderStatus\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_Urine_Cylinders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UrineCylinderStatus\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Cylinders_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Cylinders_ID]"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Cylinders_ID]"
+                      name="Urine_Cylinders_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Cylinders]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Cylinders]"
+                      length="1000"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Cylinders]"
+                      name="Urine_Cylinders"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Cylinders_ID]"
+                      dataType="i4"
+                      name="Urine_Cylinders_ID" />
+                    <externalMetadataColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Cylinders]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Urine_Cylinders" />
+                    <externalMetadataColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Cylinders_ID]"
+                      dataType="i4"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Cylinders_ID]"
+                      name="Urine_Cylinders_ID" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Cylinders]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Cylinders]"
+                      name="Urine_Cylinders" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\UrineCylinderStatus.Paths[OLE DB Source Output]"
+              endId="Package\UrineCylinderStatus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\UrineCylinderStatus\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UrineMicroorganismStatus"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C1C81477-A810-4850-B2CE-C4A50B53D86C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UrineMicroorganismStatus"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\UrineMicroorganismStatus\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[UrineMicroorganismStatus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UrineMicroorganismStatus\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Urine_Microorganisms_ID]"
+                      cachedDataType="i4"
+                      cachedName="Urine_Microorganisms_ID"
+                      externalMetadataColumnId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineMicroorganismStatusId]"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Microorganisms_ID]" />
+                    <inputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Urine_Microorganisms]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="Urine_Microorganisms"
+                      externalMetadataColumnId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineMicroorganismStatusName]"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Microorganisms]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineMicroorganismStatusId]"
+                      dataType="i4"
+                      name="UrineMicroorganismStatusId" />
+                    <externalMetadataColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrineMicroorganismStatusName]"
+                      dataType="wstr"
+                      length="50"
+                      name="UrineMicroorganismStatusName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UrineMicroorganismStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UrineMicroorganismStatus\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_Urine_Microorganisms]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UrineMicroorganismStatus\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Microorganisms_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Microorganisms_ID]"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Microorganisms_ID]"
+                      name="Urine_Microorganisms_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Microorganisms]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Microorganisms]"
+                      length="1000"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urine_Microorganisms]"
+                      name="Urine_Microorganisms"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Microorganisms_ID]"
+                      dataType="i4"
+                      name="Urine_Microorganisms_ID" />
+                    <externalMetadataColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urine_Microorganisms]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Urine_Microorganisms" />
+                    <externalMetadataColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Microorganisms_ID]"
+                      dataType="i4"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Microorganisms_ID]"
+                      name="Urine_Microorganisms_ID" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Microorganisms]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urine_Microorganisms]"
+                      name="Urine_Microorganisms" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\UrineMicroorganismStatus.Paths[OLE DB Source Output]"
+              endId="Package\UrineMicroorganismStatus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\UrineMicroorganismStatus\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UrogenitalicDisease"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4938E1B2-CEE8-4134-ABF3-3C860063249E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UrogenitalicDisease"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\UrogenitalicDisease\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[UrogenitalicDisease]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UrogenitalicDisease\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Urinary_System_Disease_ID]"
+                      cachedDataType="i4"
+                      cachedName="Urinary_System_Disease_ID"
+                      externalMetadataColumnId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrogenitalicDiseaseId]"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urinary_System_Disease_ID]" />
+                    <inputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Urinary_System_Disease]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="Urinary_System_Disease"
+                      externalMetadataColumnId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrogenitalicDiseaseName]"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urinary_System_Disease]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrogenitalicDiseaseId]"
+                      dataType="i4"
+                      name="UrogenitalicDiseaseId" />
+                    <externalMetadataColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UrogenitalicDiseaseName]"
+                      dataType="wstr"
+                      length="50"
+                      name="UrogenitalicDiseaseName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UrogenitalicDisease\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UrogenitalicDisease\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_Urogenitalic_Tract_Disease]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UrogenitalicDisease\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urinary_System_Disease_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urinary_System_Disease_ID]"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urinary_System_Disease_ID]"
+                      name="Urinary_System_Disease_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urinary_System_Disease]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urinary_System_Disease]"
+                      length="1000"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[Urinary_System_Disease]"
+                      name="Urinary_System_Disease"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urinary_System_Disease_ID]"
+                      dataType="i4"
+                      name="Urinary_System_Disease_ID" />
+                    <externalMetadataColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Urinary_System_Disease]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Urinary_System_Disease" />
+                    <externalMetadataColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urinary_System_Disease_ID]"
+                      dataType="i4"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urinary_System_Disease_ID]"
+                      name="Urinary_System_Disease_ID" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urinary_System_Disease]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Urinary_System_Disease]"
+                      name="Urinary_System_Disease" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\UrogenitalicDisease.Paths[OLE DB Source Output]"
+              endId="Package\UrogenitalicDisease\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\UrogenitalicDisease\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Valve"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B2271FAE-4876-4470-B010-3680953EE7A6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Valve"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Valve\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Valve]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Valve\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valve_ID]"
+                      cachedDataType="i4"
+                      cachedName="Valve_ID"
+                      externalMetadataColumnId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveId]"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_ID]" />
+                    <inputColumn
+                      refId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valve]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Valve"
+                      externalMetadataColumnId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveName]"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveId]"
+                      dataType="i4"
+                      name="ValveId" />
+                    <externalMetadataColumn
+                      refId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ValveName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Valve\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Valve\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Valve\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Valve\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_Valve]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Valve\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_ID]"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_ID]"
+                      name="Valve_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve]"
+                      length="50"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve]"
+                      name="Valve"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_ID]"
+                      dataType="i4"
+                      name="Valve_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve]"
+                      dataType="wstr"
+                      length="50"
+                      name="Valve" />
+                    <externalMetadataColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_ID]"
+                      dataType="i4"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_ID]"
+                      name="Valve_ID" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve]"
+                      name="Valve" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Valve.Paths[OLE DB Source Output]"
+              endId="Package\Valve\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Valve\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ValveSurgeryType"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{39EDA6F9-B593-4B11-9CFB-489B0F7AE9AF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ValveSurgeryType"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ValveSurgeryType\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ValveSurgeryType]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ValveSurgeryType\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valve_Surgery_ID]"
+                      cachedDataType="i4"
+                      cachedName="Valve_Surgery_ID"
+                      externalMetadataColumnId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveSurgeryTypeId]"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_Surgery_ID]" />
+                    <inputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valve_Surgery]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="Valve_Surgery"
+                      externalMetadataColumnId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveSurgeryTypeName]"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_Surgery]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveSurgeryTypeId]"
+                      dataType="i4"
+                      name="ValveSurgeryTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveSurgeryTypeName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ValveSurgeryTypeName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ValveSurgeryType\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ValveSurgeryType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ValveSurgeryType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ValveSurgeryType\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_Valve_Surgery]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ValveSurgeryType\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_Surgery_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_Surgery_ID]"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_Surgery_ID]"
+                      name="Valve_Surgery_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_Surgery]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_Surgery]"
+                      length="1000"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_Surgery]"
+                      name="Valve_Surgery"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_Surgery_ID]"
+                      dataType="i4"
+                      name="Valve_Surgery_ID" />
+                    <externalMetadataColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_Surgery]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Valve_Surgery" />
+                    <externalMetadataColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_Surgery_ID]"
+                      dataType="i4"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_Surgery_ID]"
+                      name="Valve_Surgery_ID" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_Surgery]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_Surgery]"
+                      name="Valve_Surgery" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ValveSurgeryType.Paths[OLE DB Source Output]"
+              endId="Package\ValveSurgeryType\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ValveSurgeryType\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ValveType"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FA2399DE-D6BD-4AE7-B31D-9FC4D0CE203F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ValveType"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ValveType\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ValveType]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ValveType\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valve_ID]"
+                      cachedDataType="i4"
+                      cachedName="Valve_ID"
+                      externalMetadataColumnId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveTypeId]"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_ID]" />
+                    <inputColumn
+                      refId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valve]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Valve"
+                      externalMetadataColumnId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveTypeName]"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveTypeId]"
+                      dataType="i4"
+                      name="ValveTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ValveTypeName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ValveTypeName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ValveType\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ValveType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ValveType\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ValveType\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_Valve]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ValveType\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_ID]"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve_ID]"
+                      name="Valve_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve]"
+                      length="50"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valve]"
+                      name="Valve"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve_ID]"
+                      dataType="i4"
+                      name="Valve_ID" />
+                    <externalMetadataColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valve]"
+                      dataType="wstr"
+                      length="50"
+                      name="Valve" />
+                    <externalMetadataColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_ID]"
+                      dataType="i4"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve_ID]"
+                      name="Valve_ID" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valve]"
+                      name="Valve" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ValveType.Paths[OLE DB Source Output]"
+              endId="Package\ValveType\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ValveType\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\VH"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{834C7812-1467-4EFC-825F-7DA79345F882}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="VH"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\VH\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[VH]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\VH\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2DD4FF-F91B-43A3-84D1-05F165B1759F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CardioSenceDB.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VH_ID]"
+                      cachedDataType="i4"
+                      cachedName="VH_ID"
+                      externalMetadataColumnId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VHId]"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[VH_ID]" />
+                    <inputColumn
+                      refId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VH]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="VH"
+                      externalMetadataColumnId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VHName]"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[VH]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VHId]"
+                      dataType="i4"
+                      name="VHId" />
+                    <externalMetadataColumn
+                      refId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VHName]"
+                      dataType="wstr"
+                      length="50"
+                      name="VHName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VH\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VH\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VH\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CB_VH]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\VH\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{1FE23316-4714-4314-B845-D733474F2C76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[109.75.39.191,58144.CADMIS.cardiosystemsmgr]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[VH_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VH_ID]"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[VH_ID]"
+                      name="VH_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[VH]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VH]"
+                      length="1000"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[VH]"
+                      name="VH"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[StsID]"
+                      name="StsID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].Columns[NewID]"
+                      name="NewID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VH_ID]"
+                      dataType="i4"
+                      name="VH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VH]"
+                      dataType="wstr"
+                      length="1000"
+                      name="VH" />
+                    <externalMetadataColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StsID]"
+                      dataType="bool"
+                      name="StsID" />
+                    <externalMetadataColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NewID]"
+                      dataType="i4"
+                      name="NewID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VH_ID]"
+                      dataType="i4"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VH_ID]"
+                      name="VH_ID" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VH]"
+                      dataType="wstr"
+                      length="1000"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VH]"
+                      name="VH" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      dataType="bool"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StsID]"
+                      name="StsID" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      dataType="i4"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NewID]"
+                      name="NewID" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VH\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\VH.Paths[OLE DB Source Output]"
+              endId="Package\VH\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\VH\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FAC09811-4F31-41BE-98B7-69BA78DECAE1}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\TroponinStatus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3379A4E-F417-49B4-81F3-C1034BBE758F}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\UrineCylinderStatus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0BBB5C6B-40C1-4FAF-BF48-665B3816553B}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\UrineMicroorganismStatus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{68A0851D-15B8-4E28-9007-8106BE11B696}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\UrogenitalicDisease" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9E427209-6C98-44B1-BDD6-C3003AA6EBE6}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Valve" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{4867858D-1816-465A-B77C-D250D20D2B8E}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\ValveSurgeryType" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{720F8FF8-C764-496F-B24A-EF7D2540BEE3}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\ValveType" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{A105DC79-9E58-4B4B-9F17-8C556223CE04}"
+      DTS:From="Package\Clear Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\VH" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Clear Tables"
+          TopLeft="334,33" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\TroponinStatus"
+          TopLeft="60,123" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\UrineCylinderStatus"
+          TopLeft="69,233" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\UrineMicroorganismStatus"
+          TopLeft="252,128" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\UrogenitalicDisease"
+          TopLeft="278,224" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Valve"
+          TopLeft="516,133" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\ValveSurgeryType"
+          TopLeft="489,232" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\ValveType"
+          TopLeft="706,123" />
+        <NodeLayout
+          Size="93,42"
+          Id="Package\VH"
+          TopLeft="738,224" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="352.333333333333,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-217.333333333333,48"
+              Start="0,0"
+              End="-217.333333333333,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.13435700575815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.13435700575815"
+                    Point2="0,10.1343570057581"
+                    Point3="-4,10.1343570057581" />
+                  <mssgle:LineSegment
+                    End="-213.333333333333,10.1343570057581" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-213.333333333333,10.1343570057581"
+                    Point2="-217.333333333333,10.1343570057581"
+                    Point3="-217.333333333333,14.1343570057581" />
+                  <mssgle:LineSegment
+                    End="-217.333333333333,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="366.666666666667,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-212.166666666667,158"
+              Start="0,0"
+              End="-212.166666666667,150.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.0181219110379" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.0181219110379"
+                    Point2="0,51.0181219110379"
+                    Point3="-4,51.0181219110379" />
+                  <mssgle:LineSegment
+                    End="-208.166666666667,51.0181219110379" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-208.166666666667,51.0181219110379"
+                    Point2="-212.166666666667,51.0181219110379"
+                    Point3="-212.166666666667,55.0181219110379" />
+                  <mssgle:LineSegment
+                    End="-212.166666666667,150.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="395.333333333333,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-42.3333333333333,53"
+              Start="0,0"
+              End="-42.3333333333333,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0372272143774" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.0372272143774"
+                    Point2="0,25.0372272143774"
+                    Point3="-4,25.0372272143774" />
+                  <mssgle:LineSegment
+                    End="-38.3333333333333,25.0372272143774" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.3333333333333,25.0372272143774"
+                    Point2="-42.3333333333333,25.0372272143774"
+                    Point3="-42.3333333333333,29.0372272143774" />
+                  <mssgle:LineSegment
+                    End="-42.3333333333333,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="395.333333333333,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.8333333333333,149"
+              Start="0,0"
+              End="-31.8333333333333,141.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.387676508344" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66.387676508344"
+                    Point2="0,70.387676508344"
+                    Point3="-4,70.387676508344" />
+                  <mssgle:LineSegment
+                    End="-27.8333333333333,70.387676508344" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.8333333333333,70.387676508344"
+                    Point2="-31.8333333333333,70.387676508344"
+                    Point3="-31.8333333333333,74.387676508344" />
+                  <mssgle:LineSegment
+                    End="-31.8333333333333,141.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="409.666666666667,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="158.333333333333,58"
+              Start="0,0"
+              End="158.333333333333,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3992297817715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.3992297817715"
+                    Point2="0,27.3992297817715"
+                    Point3="4,27.3992297817715" />
+                  <mssgle:LineSegment
+                    End="154.333333333333,27.3992297817715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="154.333333333333,27.3992297817715"
+                    Point2="158.333333333333,27.3992297817715"
+                    Point3="158.333333333333,31.3992297817715" />
+                  <mssgle:LineSegment
+                    End="158.333333333333,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="424,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147,157"
+              Start="0,0"
+              End="147,149.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.8874458874459" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.8874458874459"
+                    Point2="0,63.8874458874459"
+                    Point3="4,63.8874458874459" />
+                  <mssgle:LineSegment
+                    End="143,63.8874458874459" />
+                  <mssgle:CubicBezierSegment
+                    Point1="143,63.8874458874459"
+                    Point2="147,63.8874458874459"
+                    Point3="147,67.8874458874459" />
+                  <mssgle:LineSegment
+                    End="147,149.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="452.666666666667,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="316.833333333333,48"
+              Start="0,0"
+              End="316.833333333333,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.13435700575817" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.13435700575817"
+                    Point2="0,10.1343570057582"
+                    Point3="4,10.1343570057582" />
+                  <mssgle:LineSegment
+                    End="312.833333333333,10.1343570057582" />
+                  <mssgle:CubicBezierSegment
+                    Point1="312.833333333333,10.1343570057582"
+                    Point2="316.833333333333,10.1343570057582"
+                    Point3="316.833333333333,14.1343570057582" />
+                  <mssgle:LineSegment
+                    End="316.833333333333,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="452.666666666667,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="331.833333333333,149"
+              Start="0,0"
+              End="331.833333333333,141.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.4587332053743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.4587332053743"
+                    Point2="0,31.4587332053743"
+                    Point3="4,31.4587332053743" />
+                  <mssgle:LineSegment
+                    End="327.833333333333,31.4587332053743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="327.833333333333,31.4587332053743"
+                    Point2="331.833333333333,31.4587332053743"
+                    Point3="331.833333333333,35.4587332053743" />
+                  <mssgle:LineSegment
+                    End="331.833333333333,141.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\TroponinStatus">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\TroponinStatus\OLE DB Source"
+          TopLeft="311,33" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\TroponinStatus\OLE DB Destination"
+          TopLeft="328,148" />
+        <EdgeLayout
+          Id="Package\TroponinStatus.Paths[OLE DB Source Output]"
+          TopLeft="386,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.5,73"
+              Start="0,0"
+              End="27.5,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="4,36.5" />
+                  <mssgle:LineSegment
+                    End="23.5,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,36.5"
+                    Point2="27.5,36.5"
+                    Point3="27.5,40.5" />
+                  <mssgle:LineSegment
+                    End="27.5,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\UrineCylinderStatus">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\UrineCylinderStatus\OLE DB Source"
+          TopLeft="359,29" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\UrineCylinderStatus\OLE DB Destination"
+          TopLeft="371,137" />
+        <EdgeLayout
+          Id="Package\UrineCylinderStatus.Paths[OLE DB Source Output]"
+          TopLeft="434,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,66"
+              Start="0,0"
+              End="22.5,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="4,33" />
+                  <mssgle:LineSegment
+                    End="18.5,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,33"
+                    Point2="22.5,33"
+                    Point3="22.5,37" />
+                  <mssgle:LineSegment
+                    End="22.5,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\UrineMicroorganismStatus">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\UrineMicroorganismStatus\OLE DB Source"
+          TopLeft="364,41" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\UrineMicroorganismStatus\OLE DB Destination"
+          TopLeft="371,154" />
+        <EdgeLayout
+          Id="Package\UrineMicroorganismStatus.Paths[OLE DB Source Output]"
+          TopLeft="439,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5,71"
+              Start="0,0"
+              End="17.5,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5"
+                    Point2="0,35.5"
+                    Point3="4,35.5" />
+                  <mssgle:LineSegment
+                    End="13.5,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5,35.5"
+                    Point2="17.5,35.5"
+                    Point3="17.5,39.5" />
+                  <mssgle:LineSegment
+                    End="17.5,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\UrogenitalicDisease">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\UrogenitalicDisease\OLE DB Source"
+          TopLeft="371,40" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\UrogenitalicDisease\OLE DB Destination"
+          TopLeft="394,154" />
+        <EdgeLayout
+          Id="Package\UrogenitalicDisease.Paths[OLE DB Source Output]"
+          TopLeft="446,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.5,72"
+              Start="0,0"
+              End="33.5,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="4,36" />
+                  <mssgle:LineSegment
+                    End="29.5,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.5,36"
+                    Point2="33.5,36"
+                    Point3="33.5,40" />
+                  <mssgle:LineSegment
+                    End="33.5,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Valve">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Valve\OLE DB Source"
+          TopLeft="391,51" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Valve\OLE DB Destination"
+          TopLeft="403,169" />
+        <EdgeLayout
+          Id="Package\Valve.Paths[OLE DB Source Output]"
+          TopLeft="466,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,76"
+              Start="0,0"
+              End="22.5,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="4,38" />
+                  <mssgle:LineSegment
+                    End="18.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,38"
+                    Point2="22.5,38"
+                    Point3="22.5,42" />
+                  <mssgle:LineSegment
+                    End="22.5,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\ValveSurgeryType">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\ValveSurgeryType\OLE DB Source"
+          TopLeft="275,36" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\ValveSurgeryType\OLE DB Destination"
+          TopLeft="254,169" />
+        <EdgeLayout
+          Id="Package\ValveSurgeryType.Paths[OLE DB Source Output]"
+          TopLeft="350,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.5,91"
+              Start="0,0"
+              End="-10.5,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.5"
+                    Point2="0,45.5"
+                    Point3="-4,45.5" />
+                  <mssgle:LineSegment
+                    End="-6.5,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.5,45.5"
+                    Point2="-10.5,45.5"
+                    Point3="-10.5,49.5" />
+                  <mssgle:LineSegment
+                    End="-10.5,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\ValveType">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\ValveType\OLE DB Source"
+          TopLeft="399,67" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\ValveType\OLE DB Destination"
+          TopLeft="448,152" />
+        <EdgeLayout
+          Id="Package\ValveType.Paths[OLE DB Source Output]"
+          TopLeft="474,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.5,43"
+              Start="0,0"
+              End="59.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="55.5,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.5,21.5"
+                    Point2="59.5,21.5"
+                    Point3="59.5,25.5" />
+                  <mssgle:LineSegment
+                    End="59.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\VH">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\VH\OLE DB Source"
+          TopLeft="407,42" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\VH\OLE DB Destination"
+          TopLeft="417,170" />
+        <EdgeLayout
+          Id="Package\VH.Paths[OLE DB Source Output]"
+          TopLeft="482,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.5,86"
+              Start="0,0"
+              End="20.5,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39"
+                    Point2="0,43"
+                    Point3="4,43" />
+                  <mssgle:LineSegment
+                    End="16.5,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5,43"
+                    Point2="20.5,43"
+                    Point3="20.5,47" />
+                  <mssgle:LineSegment
+                    End="20.5,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\TroponinStatus\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TroponinStatus\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UrineCylinderStatus\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UrineCylinderStatus\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UrineMicroorganismStatus\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UrineMicroorganismStatus\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UrogenitalicDisease\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UrogenitalicDisease\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Valve\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Valve\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ValveSurgeryType\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ValveSurgeryType\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ValveType\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ValveType\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\VH\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\VH\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
